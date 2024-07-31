@@ -14,8 +14,7 @@ namespace GestionDeActivos.Personas
         private string surname;
         private Company company;
         public string NameCompany => company?.Name;
-        public string TypePerson => "Montador Externo";
-        public string FullName => $"{Surname}, {Name}";
+        public string TypePerson => "Montador Propio";
 
         public OwnAssembler(string name, string surname, Company company)
         {
@@ -38,7 +37,6 @@ namespace GestionDeActivos.Personas
                 {
                     name = value;
                     OnPropertyChanged(nameof(Name));
-                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -52,7 +50,6 @@ namespace GestionDeActivos.Personas
                 {
                     surname = value;
                     OnPropertyChanged(nameof(Surname));
-                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -70,8 +67,6 @@ namespace GestionDeActivos.Personas
             }
         }
 
-        public override string ToString() => $"{FullName} ({TypePerson})\n";
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
@@ -80,4 +75,3 @@ namespace GestionDeActivos.Personas
         }
     }
 }
-

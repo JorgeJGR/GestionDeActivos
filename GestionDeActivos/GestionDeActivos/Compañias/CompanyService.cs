@@ -49,5 +49,10 @@ namespace GestionDeActivos.Compañias
 
             return Companies.FirstOrDefault(comp => comp.Equals(c));
         }
+
+        public Company SearchByCompanyName(string name)
+        {
+            return Companies.FirstOrDefault(comp => comp.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }

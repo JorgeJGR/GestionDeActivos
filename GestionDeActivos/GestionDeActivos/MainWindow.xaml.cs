@@ -26,7 +26,6 @@ namespace GestionDeActivos
         {
             InitializeComponent();
             CrearBaseDeDatosYTablas();
-            InsertarDatosIniciales();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -36,55 +35,63 @@ namespace GestionDeActivos
 
         private void CrearBaseDeDatosYTablas()
         {
-
-            SQLiteConnection conexion = new SQLiteConnection("Data Source=prueba.db");
-            conexion.Open();
-
-            SQLiteCommand comando = conexion.CreateCommand();
-
-            comando.CommandText = @"
-                    CREATE TABLE IF NOT EXISTS Compañias (
-                        IdCompany INTEGER PRIMARY KEY,
-                        Name TEXT NOT NULL UNIQUE,
-                        TipoCompañia TEXT NOT NULL,
-                        Telefono TEXT,
-                        Email TEXT
-                    );
-                ";
-            comando.ExecuteNonQuery();
-        }
-
-        private void InsertarDatosIniciales()
-        {
-            SQLiteConnection conexion = new SQLiteConnection("Data Source=prueba.db");
-            conexion.Open();
-
-            SQLiteCommand comando = conexion.CreateCommand();
-
-            comando.CommandText = @"
-                INSERT INTO Compañias (Name, TipoCompañia, Telefono, Email)
-                VALUES (@name, @tipo, @telefono, @email);
-                       
-            ";
-
-            comando.Parameters.AddWithValue("@name", "Monbake");
-            comando.Parameters.AddWithValue("@tipo", "Interna");
-            comando.Parameters.AddWithValue("@telefono", "948902900");
-            comando.Parameters.AddWithValue("@email", "MantenimientoAlica@monbake.es");
-
-            try
+            using (SQLiteConnection conexion = new SQLiteConnection("Data Source=GestActiveDB.db"))
             {
-                comando.ExecuteNonQuery();
-                MessageBox.Show("Datos iniciales insertados correctamente.");
-            }
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show("Error al insertar datos iniciales: " + ex.Message);
-            }
+                conexion.Open();
 
-            conexion.Close();
+                using (SQLiteCommand comando = conexion.CreateCommand())
+                {
+                    comando.CommandText = @"
+                CREATE TABLE IF NOT EXISTS Compañias (
+                    IdCompany INTEGER PRIMARY KEY,
+                    Name TEXT NOT NULL UNIQUE,
+                    TipoCompañia TEXT NOT NULL,
+                    Telefono TEXT,
+                    Email TEXT
+                );";
+                    comando.ExecuteNonQuery();
+                }
+
+                using (SQLiteCommand comando = conexion.CreateCommand())
+                {
+                    comando.CommandText = @"
+                    CREATE UNIQUE INDEX IF NOT EXISTS idx_namecompany ON Compañias (Name);";
+                    comando.ExecuteNonQuery();
+                }
+
+                using (SQLiteCommand comando = conexion.CreateCommand())
+                {
+                    comando.CommandText = @"
+                    CREATE TABLE IF NOT EXISTS Personas (
+                        IdPerson INT PRIMARY KEY,
+                        Name VARCHAR(255) NULL,
+                        Surname VARCHAR(255) NULL,
+                        NameCompany VARCHAR(255) NULL,
+                        TypePerson VARCHAR(255) NULL,
+                        FullName VARCHAR(255) NULL,
+                        Telephone VARCHAR(255) NULL,
+                        Email VARCHAR(255) NULL
+                    );";
+                    comando.ExecuteNonQuery();
+                }
+
+                using (SQLiteCommand comando = conexion.CreateCommand())
+                {
+                    comando.CommandText = @"
+                    CREATE INDEX IF NOT EXISTS idx_namecompany ON Personas (NameCompany);";
+                    comando.ExecuteNonQuery();
+                }
+
+                using (SQLiteCommand comando = conexion.CreateCommand())
+                {
+                    comando.CommandText = @"
+                    CREATE INDEX IF NOT EXISTS idx_typeperson ON Personas (TypePerson);";
+                    comando.ExecuteNonQuery();
+                }
+
+                conexion.Close();
+            }
         }
-
 
         private void ProbarButton_Click(object sender, RoutedEventArgs e)
         {

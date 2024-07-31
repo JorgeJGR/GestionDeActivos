@@ -12,7 +12,6 @@ namespace GestionDeActivos.Personas
         private string email;
         public string NameCompany => company?.Name;
         public string TypePerson => "Comercial";
-        public string FullName => $"{Surname}, {Name}";
 
         public Commercial(string name, string surname, Company company, string telephone, string email)
         {
@@ -37,7 +36,6 @@ namespace GestionDeActivos.Personas
                 {
                     name = value;
                     OnPropertyChanged(nameof(Name));
-                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -51,7 +49,6 @@ namespace GestionDeActivos.Personas
                 {
                     surname = value;
                     OnPropertyChanged(nameof(Surname));
-                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -94,10 +91,6 @@ namespace GestionDeActivos.Personas
                 }
             }
         }
-
-        public override string ToString() => $"{FullName} ({TypePerson})\n"
-                                               + $"Teléfono: {Telephone}\n"
-                                               + $"Email: {Email}\n";
 
         public event PropertyChangedEventHandler PropertyChanged;
 

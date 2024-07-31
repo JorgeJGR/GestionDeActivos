@@ -42,7 +42,7 @@
                     <Label>Nombre Compañia</Label>
                     <TextBox x:Name="nombreTextBox" Style="{StaticResource Mediano}"></TextBox>
                     <Button x:Name="buscarButton" Style="{StaticResource Actions}"
-                        Content="Buscar" Tag="Imagenes/look.ico"  HorizontalAlignment="Left">
+                        Content="Buscar" Tag="Imagenes/look.ico"  HorizontalAlignment="Left" Click="BuscarButton_Click">
                     </Button>
                 </StackPanel>
                 <StackPanel Background="LightGray" Margin="5">
@@ -53,11 +53,11 @@
                 </StackPanel>
                 <StackPanel Background="LightGray" Margin="5">
                     <Label>Teléfono</Label>
-                    <TextBox x:Name="telefonoTextBox" Style="{StaticResource Corto}"></TextBox>
+                    <TextBox x:Name="telefonoTextBox" Style="{StaticResource Corto}" IsReadOnly="True" Background="Lavender"></TextBox>
                 </StackPanel>
                 <StackPanel Background="LightGray" Margin="5">
                     <Label>Email</Label>
-                    <TextBox x:Name="emailTextBox" Style="{StaticResource Largo}"></TextBox>
+                    <TextBox x:Name="emailTextBox" Style="{StaticResource Largo}" IsReadOnly="True" Background="Lavender"></TextBox>
                 </StackPanel>
             </StackPanel>
 
@@ -73,7 +73,7 @@
             IsEnabled="False" Content="Eliminar" Tag="Imagenes/delete.ico"/>
 
                 <Button x:Name="limpiarButton" Style="{StaticResource Actions}"
-            Content="Limpiar" Tag="Imagenes/clear.ico"></Button>
+            Content="Limpiar" Tag="Imagenes/clear.ico" Click="LimpiarButton_Click"></Button>
 
             </StackPanel>
 

@@ -92,10 +92,6 @@ namespace GestionDeActivos.Compañias
             }
             else
             {
-                if (name == "Monbake")
-                {
-                    throw new CompanyException("Monbake solo puede ser con IdCompany = 1.");
-                }
                 Name = name;
                 Type = TypeCompany.Externa;
             }

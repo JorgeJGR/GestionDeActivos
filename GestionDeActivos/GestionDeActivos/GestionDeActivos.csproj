@@ -92,6 +92,7 @@
     <Compile Include="Compañias\CompanyView.xaml.cs">
       <DependentUpon>CompanyView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Personas\PersonDTO.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -103,6 +104,8 @@
     <Compile Include="Personas\IPerson.cs" />
     <Compile Include="Personas\OwnAssembler.cs" />
     <Compile Include="Personas\PersonException.cs" />
+    <Compile Include="Personas\PersonService.cs" />
+    <Compile Include="Personas\PersonsException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
