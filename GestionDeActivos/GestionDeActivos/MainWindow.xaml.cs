@@ -43,19 +43,12 @@ namespace GestionDeActivos
                 {
                     comando.CommandText = @"
                 CREATE TABLE IF NOT EXISTS Compañias (
-                    IdCompany INTEGER PRIMARY KEY,
-                    Name TEXT NOT NULL UNIQUE,
+                    IdCompany INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Name TEXT NOT NULL,
                     TipoCompañia TEXT NOT NULL,
-                    Telefono TEXT,
+                    Telephone TEXT,
                     Email TEXT
                 );";
-                    comando.ExecuteNonQuery();
-                }
-
-                using (SQLiteCommand comando = conexion.CreateCommand())
-                {
-                    comando.CommandText = @"
-                    CREATE UNIQUE INDEX IF NOT EXISTS idx_namecompany ON Compañias (Name);";
                     comando.ExecuteNonQuery();
                 }
 
@@ -72,20 +65,6 @@ namespace GestionDeActivos
                         Telephone VARCHAR(255) NULL,
                         Email VARCHAR(255) NULL
                     );";
-                    comando.ExecuteNonQuery();
-                }
-
-                using (SQLiteCommand comando = conexion.CreateCommand())
-                {
-                    comando.CommandText = @"
-                    CREATE INDEX IF NOT EXISTS idx_namecompany ON Personas (NameCompany);";
-                    comando.ExecuteNonQuery();
-                }
-
-                using (SQLiteCommand comando = conexion.CreateCommand())
-                {
-                    comando.CommandText = @"
-                    CREATE INDEX IF NOT EXISTS idx_typeperson ON Personas (TypePerson);";
                     comando.ExecuteNonQuery();
                 }
 

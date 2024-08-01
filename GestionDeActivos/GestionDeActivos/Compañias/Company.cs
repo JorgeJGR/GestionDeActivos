@@ -13,12 +13,10 @@ namespace GestionDeActivos.Compañias
         private string telephone;
         private string email;
 
-        private static int nextIdCompany = 1;
-
         public int IdCompany
         {
             get => idCompany;
-            internal set 
+            set 
             {
                 if (idCompany != value)
                 {
@@ -82,23 +80,15 @@ namespace GestionDeActivos.Compañias
 
         public Company(string name, string telephone, string email)
         {
-            IdCompany = nextIdCompany;
-            nextIdCompany++;
-
-            if (IdCompany == 1)
+            Name = name;
+            if (Name != "Monbake")
             {
-                Name = "Monbake";
-                Type = TypeCompany.Interna;
+                Type = TypeCompany.Externa;
+
             }
             else
             {
-                Name = name;
-                Type = TypeCompany.Externa;
-            }
-
-            if (IdCompany != 1 && Type == TypeCompany.Interna)
-            {
-                throw new CompanyException("Si IdCompany es distinto de 1, el tipo de Compañia debe ser 'Externa'.");
+                Type = TypeCompany.Interna;
             }
 
             Telephone = telephone;

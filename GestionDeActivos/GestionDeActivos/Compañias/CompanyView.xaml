@@ -64,13 +64,13 @@
 
             <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Background="LightGray">
                 <Button x:Name="grabarButton" Style="{StaticResource Actions}"
-            IsEnabled="False" Content="Grabar" Tag="Imagenes/save.ico"/>
+            IsEnabled="False" Content="Grabar" Tag="Imagenes/save.ico" Click="GrabarButton_Click"/>
 
                 <Button x:Name="actualizarButton" Style="{StaticResource Actions}" 
-            IsEnabled="False" Content="Actualizar" Tag="Imagenes/insert.ico"/>
+            IsEnabled="False" Content="Actualizar" Tag="Imagenes/insert.ico" Click="ActualizarButton_Click"/>
 
                 <Button x:Name="eliminarButton" Style="{StaticResource Actions}" 
-            IsEnabled="False" Content="Eliminar" Tag="Imagenes/delete.ico"/>
+            IsEnabled="False" Content="Eliminar" Tag="Imagenes/delete.ico" Click="EliminarButton_Click"/>
 
                 <Button x:Name="limpiarButton" Style="{StaticResource Actions}"
             Content="Limpiar" Tag="Imagenes/clear.ico" Click="LimpiarButton_Click"></Button>

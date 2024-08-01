@@ -24,13 +24,15 @@ namespace GestionDeActivos.Compañias
 
         private void CargarDatos()
         {
+            Companies.Clear();
+
             string connectionString = "Data Source = GestActiveDB.db";
 
             using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
             {
                 conexion.Open();
 
-                string query = "SELECT IdCompany, Name, TipoCompañia, Telefono, Email FROM Compañias";
+                string query = "SELECT IdCompany, Name, TipoCompañia, Telephone, Email FROM Compañias";
                 using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
                 {
                     using (SQLiteDataReader reader = comando.ExecuteReader())
@@ -46,7 +48,7 @@ namespace GestionDeActivos.Compañias
                                 Type = (Company.TypeCompany)Enum.Parse(typeof(Company.TypeCompany), reader.GetString(2))
                             };
                             Companies.Add(company);
-                            companyService.AddCompany(company);
+                            companyService.Companies.Add(company);
                         }
                     }
                 }
@@ -143,5 +145,78 @@ namespace GestionDeActivos.Compañias
                 }
             }
         }
+
+        private void GrabarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Company newCompany = new Company(nombreTextBox.Text, telefonoTextBox.Text, emailTextBox.Text);
+                companyService.AddCompany(newCompany);
+                MessageBox.Show("Compañía guardada exitosamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                LimpiarButton_Click(sender, e);
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void EliminarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string nombre = nombreTextBox.Text;
+
+                Company companyToRemove = companyService.Companies
+                    .FirstOrDefault(c => c.Name.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+
+                if (companyToRemove != null)
+                {
+                    companyService.RemoveCompanyData(companyToRemove);
+                }
+
+                LimpiarButton_Click(sender, e);
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ActualizarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string nombre = nombreTextBox.Text;
+                string telefono = telefonoTextBox.Text;
+                string email = emailTextBox.Text;
+
+                Company companyToUpdate = companyService.Companies
+                    .FirstOrDefault(c => c.Name.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+
+                if (companyToUpdate != null)
+                {
+                    companyToUpdate.Telephone = telefono;
+                    companyToUpdate.Email = email;
+
+                    companyService.UpdateCompanyData(companyToUpdate);
+
+                    LimpiarButton_Click(sender, e);
+                    CargarDatos();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró ninguna compañía con ese nombre.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }
