@@ -28,6 +28,8 @@ namespace GestionDeActivos.Personas
             Company = company;
         }
 
+        public OwnAssembler() { }
+
         public string Name
         {
             get => name;

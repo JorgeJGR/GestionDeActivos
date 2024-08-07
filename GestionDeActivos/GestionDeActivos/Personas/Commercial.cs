@@ -27,6 +27,8 @@ namespace GestionDeActivos.Personas
             Email = email;
         }
 
+        public Commercial() { }
+
         public string Name
         {
             get => name;

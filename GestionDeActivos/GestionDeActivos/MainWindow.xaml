@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GestionDeActivos"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="probarButton" Style="{StaticResource Actions}" Content="Probar" Tag="Imagenes/look.ico" Click="ProbarButton_Click"/>
-    </Grid>
+    <StackPanel>
+        <Button Style="{StaticResource Actions}" Content="Probar-01" Tag="Imagenes/look.ico" Click="ProbarButtonProbar01_Click"/>
+        <Button Style="{StaticResource Actions}" Content="Probar-02" Tag="Imagenes/look.ico" Click="ProbarButtonProbar02_Click"/>
+    </StackPanel>
 </Window>

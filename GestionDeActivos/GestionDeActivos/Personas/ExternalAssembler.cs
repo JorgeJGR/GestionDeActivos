@@ -30,6 +30,8 @@ namespace GestionDeActivos.Personas
             Telephone = telephone;
         }
 
+        public ExternalAssembler() { }
+
         public string Name
         {
             get => name;

@@ -213,7 +213,6 @@ namespace GestionDeActivos.Compañias
             }
             catch (Exception ex)
             {
-                // Manejo de errores
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

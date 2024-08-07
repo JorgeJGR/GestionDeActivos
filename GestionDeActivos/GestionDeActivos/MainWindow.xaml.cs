@@ -56,7 +56,7 @@ namespace GestionDeActivos
                 {
                     comando.CommandText = @"
                     CREATE TABLE IF NOT EXISTS Personas (
-                        IdPerson INT PRIMARY KEY,
+                        IdPerson INT PRIMARY KEY AUTOINCREMENT,
                         Name VARCHAR(255) NULL,
                         Surname VARCHAR(255) NULL,
                         NameCompany VARCHAR(255) NULL,
@@ -72,13 +72,22 @@ namespace GestionDeActivos
             }
         }
 
-        private void ProbarButton_Click(object sender, RoutedEventArgs e)
+        private void ProbarButtonProbar01_Click(object sender, RoutedEventArgs e)
         {
             Compañias.CompanyView companyView = new Compañias.CompanyView
             {
                 Owner = this
             };
             companyView.ShowDialog();
+        }
+
+        private void ProbarButtonProbar02_Click(object sender, RoutedEventArgs e)
+        {
+            Personas.PersonDTOView personDTOView = new Personas.PersonDTOView()
+            {
+                Owner = this
+            };
+            personDTOView.ShowDialog();
         }
     }
 }

@@ -97,6 +97,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Personas\PersonDTOView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Personas\Commercial.cs" />
@@ -104,8 +108,12 @@
     <Compile Include="Personas\IPerson.cs" />
     <Compile Include="Personas\OwnAssembler.cs" />
     <Compile Include="Personas\PersonException.cs" />
+    <Compile Include="Personas\PersonHelper.cs" />
     <Compile Include="Personas\PersonService.cs" />
     <Compile Include="Personas\PersonsException.cs" />
+    <Compile Include="Personas\PersonDTOView.xaml.cs">
+      <DependentUpon>PersonDTOView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -15,12 +15,10 @@ namespace GestionDeActivos.Personas
         private string telephone;
         private string email;
 
-        private static int nextIdPerson = 1;
-
         public int IdPerson
         {
             get => idPerson;
-            internal set
+            set
             {
                 if (idPerson != value)
                 {
@@ -121,11 +119,10 @@ namespace GestionDeActivos.Personas
             }
         }
 
+        public PersonDTO() { }
+
         public PersonDTO(IPerson person)
         {
-            IdPerson = nextIdPerson;
-            nextIdPerson++;
-
             Name = person.Name;
             Surname = person.Surname;
             NameCompany = person.NameCompany;
