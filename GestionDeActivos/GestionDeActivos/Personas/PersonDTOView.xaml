@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDeActivos"
         mc:Ignorable="d"
-        Title="Personas" Height="650" Width="1200" Background="White"
+        Title="Personas" Height="650" Width="1300" Background="White"
         ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+
     <Grid>
         <Grid Margin="10" Background="Gray">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -31,7 +32,7 @@
                         <DataGridTextColumn Header="ID" Binding="{Binding IdPerson}" Width="30" CanUserResize="False"/>
                         <DataGridTextColumn Header="Nombre Completo" Binding="{Binding FullName}" Width="*" CanUserResize="False"/>
                         <DataGridTextColumn Header="Compañia" Binding="{Binding NameCompany}" Width="100" CanUserResize="False"/>
-                        <DataGridTextColumn Header="Tipo" Binding="{Binding TypePerson}" Width="100" CanUserResize="False"/>
+                        <DataGridTextColumn Header="Tipo" Binding="{Binding TypePerson}" Width="125" CanUserResize="False"/>
                         <DataGridTextColumn Header="Teléfono" Binding="{Binding Telephone}" Width="70" CanUserResize="False"/>
                         <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" CanUserResize="False"/>
                     </DataGrid.Columns>
@@ -45,21 +46,21 @@
                     <Label>Apellidos</Label>
                     <TextBox x:Name="apellidosTextBox" Style="{StaticResource Largo}"></TextBox>
                     <Button x:Name="buscarButton" Style="{StaticResource Actions}"
-                        Content="Buscar" Tag="Imagenes/look.ico"  HorizontalAlignment="Left">
+                        Content="Buscar" Tag="Imagenes/look.ico"  HorizontalAlignment="Left" Click="BuscarButton_Click">
                     </Button>
                 </StackPanel>
                 <StackPanel Background="LightGray" Margin="5">
                     <Label>Compañia</Label>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="compañiaTextBox" Style="{StaticResource Corto}"/>
-                        <ComboBox x:Name="compañiaComboBox" Style="{StaticResource MedianoCombo}"></ComboBox>
+                        <TextBox x:Name="compañiaTextBox" Style="{StaticResource Mediano}" IsReadOnly="True" Background="Lavender"/>
+                        <ComboBox x:Name="compañiaComboBox" Style="{StaticResource MedianoCombo}" SelectionChanged="CompañiaComboBox_SelectionChanged"></ComboBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Background="LightGray" Margin="5">
                     <Label>Tipo de Persona</Label>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="tipoTextBox" Style="{StaticResource Corto}"/>
-                        <ComboBox x:Name="tipoComboBox" Style="{StaticResource MedianoCombo}"></ComboBox>
+                        <TextBox x:Name="tipoTextBox" Style="{StaticResource Mediano}" IsReadOnly="True" Background="Lavender"/>
+                        <ComboBox x:Name="tipoComboBox" Style="{StaticResource MedianoCombo}" SelectionChanged="TipoComboBox_SelectionChanged"></ComboBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Background="LightGray" Margin="5">
@@ -75,16 +76,16 @@
 
             <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Background="LightGray">
                 <Button x:Name="grabarButton" Style="{StaticResource Actions}"
-            IsEnabled="False" Content="Grabar" Tag="Imagenes/save.ico"/>
+            IsEnabled="False" Content="Grabar" Tag="Imagenes/save.ico" Click="GrabarButton_Click"/>
 
                 <Button x:Name="actualizarButton" Style="{StaticResource Actions}" 
-            IsEnabled="False" Content="Actualizar" Tag="Imagenes/insert.ico"/>
+            IsEnabled="False" Content="Actualizar" Tag="Imagenes/insert.ico" Click="ActualizarButton_Click"/>
 
                 <Button x:Name="eliminarButton" Style="{StaticResource Actions}" 
-            IsEnabled="False" Content="Eliminar" Tag="Imagenes/delete.ico"/>
+            IsEnabled="False" Content="Eliminar" Tag="Imagenes/delete.ico" Click="EliminarButton_Click"/>
 
                 <Button x:Name="limpiarButton" Style="{StaticResource Actions}"
-            Content="Limpiar" Tag="Imagenes/clear.ico"></Button>
+            Content="Limpiar" Tag="Imagenes/clear.ico" Click="LimpiarButton_Click"></Button>
 
             </StackPanel>
 

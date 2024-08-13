@@ -55,8 +55,20 @@ namespace GestionDeActivos
                 using (SQLiteCommand comando = conexion.CreateCommand())
                 {
                     comando.CommandText = @"
+                    CREATE TABLE IF NOT EXISTS Activos (
+                        idActive INT NOT NULL PRIMARY KEY,
+                        description VARCHAR(255) NOT NULL,
+                        line VARCHAR(50) NOT NULL,
+                        zone VARCHAR(50) NOT NULL
+                );";
+                    comando.ExecuteNonQuery();
+                }
+
+                using (SQLiteCommand comando = conexion.CreateCommand())
+                {
+                    comando.CommandText = @"
                     CREATE TABLE IF NOT EXISTS Personas (
-                        IdPerson INT PRIMARY KEY AUTOINCREMENT,
+                        IdPerson INTEGER PRIMARY KEY AUTOINCREMENT,
                         Name VARCHAR(255) NULL,
                         Surname VARCHAR(255) NULL,
                         NameCompany VARCHAR(255) NULL,

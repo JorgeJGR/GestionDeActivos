@@ -108,17 +108,6 @@ namespace GestionDeActivos.Compañias
             }
         }
 
-
-        public Company SeeCompanyData(Company c)
-        {
-            if (!Companies.Contains(c))
-            {
-                throw new CompanyException($"{c.Name} no se encuentra en la lista.");
-            }
-
-            return Companies.FirstOrDefault(comp => comp.Equals(c));
-        }
-
         public Company SearchByCompanyName(string name)
         {
             return Companies.FirstOrDefault(comp => comp.Name.Equals(name, StringComparison.OrdinalIgnoreCase));

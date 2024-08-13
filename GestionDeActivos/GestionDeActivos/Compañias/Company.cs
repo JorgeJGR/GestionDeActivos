@@ -116,8 +116,5 @@ namespace GestionDeActivos.Compañias
             return IdCompany.GetHashCode();
         }
 
-        public override string ToString() => $"{IdCompany}: {Name} ({Type})\n"
-                                            + $"Teléfono: {Telephone}\n"
-                                            + $"Email: {Email}\n";
     }
 }
