@@ -10,7 +10,7 @@ namespace GestionDeActivos.Compañias
 {
     public partial class CompanyView : Window
     {
-        public ObservableCollection<Company> Companies { get; set; }
+        ObservableCollection<Company> Companies { get; set; }
         private CompanyService companyService;
 
         public CompanyView()

@@ -162,7 +162,10 @@
     <Resource Include="Imagenes\look.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Activos\Imagenes Activos\" />
+    <Resource Include="Imagenes\AbrirArchivo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes Activos\Banda Transportadora_02.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

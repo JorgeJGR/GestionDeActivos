@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDeActivos.Activos"
         mc:Ignorable="d"
-        Title="ActiveView" Height="700" Width="800">
+        Title="ActiveView" Height="750" Width="1250">
     <Grid>
         <Grid Margin="10" Background="Gray">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -25,12 +25,12 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="0" Background="White" Margin="5">
-                <DataGrid x:Name="compañiasDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid x:Name="compañiasDataGrid" AutoGenerateColumns="False" IsReadOnly="True" >
                     <DataGrid.Columns >
-                        <DataGridTextColumn Header="ID" Binding="{Binding IdActive}" Width="30" CanUserResize="False" />
-                        <DataGridTextColumn Header="Descipción" Binding="{Binding Description}" Width="100" CanUserResize="False" />
-                        <DataGridTextColumn Header="Línea" Binding="{Binding Line}" Width="100" CanUserResize="False" />
-                        <DataGridTextColumn Header="Zona" Binding="{Binding Zone}" Width="70" CanUserResize="False" />
+                        <DataGridTextColumn Header="ID" Binding="{Binding IdActive}" Width="40" CanUserResize="False" />
+                        <DataGridTextColumn Header="Descipción" Binding="{Binding Description}" Width="150" CanUserResize="False" />
+                        <DataGridTextColumn Header="Línea" Binding="{Binding Line}" Width="60" CanUserResize="False" />
+                        <DataGridTextColumn Header="Zona" Binding="{Binding Zone}" Width="80" CanUserResize="False" />
                         <DataGridTextColumn Header="Ruta" Binding="{Binding Image}" Width="*" CanUserResize="False" />
                     </DataGrid.Columns>
                 </DataGrid>
@@ -43,7 +43,7 @@
                     <Label>Descripción</Label>
                     <TextBox x:Name="descripcionTextBox" Style="{StaticResource Largo}"></TextBox>
                     <Button x:Name="buscarButton" Style="{StaticResource Actions}"
-                        Content="Buscar" Tag="Imagenes/look.ico" HorizontalAlignment="Left" >
+                        Content="Buscar" Tag="Imagenes/look.ico" HorizontalAlignment="Left" Click="BuscarButton_Click" >
                     </Button>
                 </StackPanel>
                 <StackPanel Background="LightGray" Margin="5">
@@ -63,10 +63,10 @@
                 <StackPanel Background="LightGray" Margin="5">
                     <Label>Imagen</Label>
                     <TextBox x:Name="imagenTextBox" Style="{StaticResource Largo}" IsReadOnly="True" Background="Lavender"></TextBox>
-                    <Button Content="Abrir" Style="{StaticResource Actions}" HorizontalAlignment="Left" 
-                            Tag="Imagenes/insert.ico" Click="SeleccionarImagen_Click"/>
-                    <Border Height="100" Margin="5">
-                    <Image x:Name="activoImage" Margin="5" Width="240"></Image>
+                    <Button x:Name="abrirArchivoButton" Content="Abrir" Style="{StaticResource Actions}" HorizontalAlignment="Left" 
+                            Tag="Imagenes/AbrirArchivo.png"  IsEnabled="False" Click="SeleccionarImagen_Click"/>
+                    <Border Height="150" Margin="5">
+                    <Image x:Name="activoImage" Margin="5" Stretch="Uniform"></Image>
                     </Border>    
                 </StackPanel>
             </StackPanel>
@@ -83,7 +83,7 @@
             IsEnabled="False" Content="Eliminar" Tag="Imagenes/delete.ico"/>
 
                 <Button x:Name="limpiarButton" Style="{StaticResource Actions}"
-            Content="Limpiar" Tag="Imagenes/clear.ico" ></Button>
+            Content="Limpiar" Tag="Imagenes/clear.ico" Click="LimpiarButton_Click" ></Button>
 
             </StackPanel>
 

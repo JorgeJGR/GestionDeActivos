@@ -108,12 +108,77 @@ namespace GestionDeActivos.Activos
 
         public Active SearchByActiveDescription(string description)
         {
-            return Actives.FirstOrDefault(comp => comp.Description.Equals(description, StringComparison.OrdinalIgnoreCase));
+            try
+            {
+                using (SQLiteConnection conexion = new SQLiteConnection("Data Source=GestActiveDB.db"))
+                {
+                    conexion.Open();
+                    string query = "SELECT * FROM Activos WHERE Description = @Description";
+                    using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@Description", description);
+                        using (SQLiteDataReader reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new Active(
+                                    Convert.ToInt32(reader["IdActive"]),
+                                    reader["Description"].ToString(),
+                                    reader["Line"].ToString(),
+                                    reader["Zone"].ToString(),
+                                    reader["Image"].ToString()
+                                );
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ActiveException($"Error al buscar por descripción: {ex.Message}");
+            }
         }
 
         public Active SearchByActiveidActive(int idActive)
         {
-            return Actives.FirstOrDefault(comp => comp.IdActive == idActive);
+            try
+            {
+                using (SQLiteConnection conexion = new SQLiteConnection("Data Source=GestActiveDB.db"))
+                {
+                    conexion.Open();
+                    string query = "SELECT * FROM Activos WHERE IdActive = @IdActive";
+                    using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@IdActive", idActive);
+                        using (SQLiteDataReader reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new Active(
+                                    Convert.ToInt32(reader["IdActive"]),
+                                    reader["Description"].ToString(),
+                                    reader["Line"].ToString(),
+                                    reader["Zone"].ToString(),
+                                    reader["Image"].ToString()
+                                );
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ActiveException($"Error al buscar por ID: {ex.Message}");
+            }
         }
+
     }
 }

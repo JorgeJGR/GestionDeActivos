@@ -8,11 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/clear.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/delete.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/exit.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/help.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/insert.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/save.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagenes/abrirarchivo.png")]
 
 
