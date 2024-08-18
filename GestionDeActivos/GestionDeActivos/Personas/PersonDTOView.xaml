@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDeActivos"
         mc:Ignorable="d"
-        Title="Personas" Height="650" Width="1300" Background="White"
+        Title="Personas" Height="650" Width="1200" Background="White"
         ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
 
     <Grid>
@@ -30,7 +30,7 @@
                 <DataGrid x:Name="personasDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding IdPerson}" Width="30" CanUserResize="False"/>
-                        <DataGridTextColumn Header="Nombre Completo" Binding="{Binding FullName}" Width="*" CanUserResize="False"/>
+                        <DataGridTextColumn Header="Nombre Completo" Binding="{Binding FullName}" Width="200" CanUserResize="False"/>
                         <DataGridTextColumn Header="Compañia" Binding="{Binding NameCompany}" Width="100" CanUserResize="False"/>
                         <DataGridTextColumn Header="Tipo" Binding="{Binding TypePerson}" Width="125" CanUserResize="False"/>
                         <DataGridTextColumn Header="Teléfono" Binding="{Binding Telephone}" Width="70" CanUserResize="False"/>

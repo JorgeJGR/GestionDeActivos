@@ -9,5 +9,6 @@
     <StackPanel>
         <Button Style="{StaticResource Actions}" Content="Probar-01" Tag="Imagenes/look.ico" Click="ProbarButtonProbar01_Click"/>
         <Button Style="{StaticResource Actions}" Content="Probar-02" Tag="Imagenes/look.ico" Click="ProbarButtonProbar02_Click"/>
+        <Button Style="{StaticResource Actions}" Content="Probar-03" Tag="Imagenes/look.ico" Click="ProbarButtonProbar03_Click"/>
     </StackPanel>
 </Window>

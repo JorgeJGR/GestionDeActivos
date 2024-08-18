@@ -17,8 +17,9 @@ namespace GestionDeActivos.Activos
         private string description;
         private string line;
         private string zone;
+        private string image;
 
-        public Active(int idActive, string description, string line, string zone)
+        public Active(int idActive, string description, string line, string zone, string image)
         {
            
             if (!Enum.IsDefined(typeof(Lines), line))
@@ -35,6 +36,7 @@ namespace GestionDeActivos.Activos
             this.description = description;
             this.line = line;
             this.zone = zone;
+            this.image = image;
         }
 
         public int IdActive
@@ -89,6 +91,18 @@ namespace GestionDeActivos.Activos
             }
         }
 
+        public string Image
+        {
+            get => image;
+            private set
+            {
+                if (image != value)
+                {
+                    image = value;
+                    OnPropertyChanged(nameof(Image));
+                }
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)

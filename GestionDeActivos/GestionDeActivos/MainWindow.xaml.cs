@@ -59,7 +59,8 @@ namespace GestionDeActivos
                         idActive INT NOT NULL PRIMARY KEY,
                         description VARCHAR(255) NOT NULL,
                         line VARCHAR(50) NOT NULL,
-                        zone VARCHAR(50) NOT NULL
+                        zone VARCHAR(50) NOT NULL,
+                        image VARCHAR(255) NOT NULL
                 );";
                     comando.ExecuteNonQuery();
                 }
@@ -100,6 +101,15 @@ namespace GestionDeActivos
                 Owner = this
             };
             personDTOView.ShowDialog();
+        }
+
+        private void ProbarButtonProbar03_Click(object sender, RoutedEventArgs e)
+        { 
+            Activos.ActiveView activeView = new Activos.ActiveView()
+            {
+                Owner = this
+            };
+            activeView.ShowDialog();
         }
     }
 }

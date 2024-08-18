@@ -1,0 +1,98 @@
+﻿<Window x:Class="GestionDeActivos.Activos.ActiveView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GestionDeActivos.Activos"
+        mc:Ignorable="d"
+        Title="ActiveView" Height="700" Width="800">
+    <Grid>
+        <Grid Margin="10" Background="Gray">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Encabezado}">
+                <Label Style="{StaticResource Titulo}">Gestión de activos</Label>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Background="White" Margin="5">
+                <DataGrid x:Name="compañiasDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="ID" Binding="{Binding IdActive}" Width="30" CanUserResize="False" />
+                        <DataGridTextColumn Header="Descipción" Binding="{Binding Description}" Width="100" CanUserResize="False" />
+                        <DataGridTextColumn Header="Línea" Binding="{Binding Line}" Width="100" CanUserResize="False" />
+                        <DataGridTextColumn Header="Zona" Binding="{Binding Zone}" Width="70" CanUserResize="False" />
+                        <DataGridTextColumn Header="Ruta" Binding="{Binding Image}" Width="*" CanUserResize="False" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel x:Name="formularioStackPanel" Grid.Row="1" Grid.Column="1" Background="Lavender" Margin="5">
+                <StackPanel Background="LightGray" Margin="5">
+                    <Label>ID Activo</Label>
+                    <TextBox x:Name="idActivoTextBox" Style="{StaticResource Corto}"></TextBox>
+                    <Label>Descripción</Label>
+                    <TextBox x:Name="descripcionTextBox" Style="{StaticResource Largo}"></TextBox>
+                    <Button x:Name="buscarButton" Style="{StaticResource Actions}"
+                        Content="Buscar" Tag="Imagenes/look.ico" HorizontalAlignment="Left" >
+                    </Button>
+                </StackPanel>
+                <StackPanel Background="LightGray" Margin="5">
+                    <Label>Línea</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="lineaTextBox" Style="{StaticResource Corto}" IsReadOnly="True" Background="Lavender"/>
+                        <ComboBox x:Name="lineaComboBox" Style="{StaticResource MedianoCombo}" SelectionChanged="LineaComboBox_SelectionChanged"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="LightGray" Margin="5">
+                    <Label>Zona</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="zonaTextBox" Style="{StaticResource Corto}" IsReadOnly="True" Background="Lavender"/>
+                        <ComboBox x:Name="zonaComboBox" Style="{StaticResource MedianoCombo}" SelectionChanged="ZonaComboBox_SelectionChanged"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="LightGray" Margin="5">
+                    <Label>Imagen</Label>
+                    <TextBox x:Name="imagenTextBox" Style="{StaticResource Largo}" IsReadOnly="True" Background="Lavender"></TextBox>
+                    <Button Content="Abrir" Style="{StaticResource Actions}" HorizontalAlignment="Left" 
+                            Tag="Imagenes/insert.ico" Click="SeleccionarImagen_Click"/>
+                    <Border Height="100" Margin="5">
+                    <Image x:Name="activoImage" Margin="5" Width="240"></Image>
+                    </Border>    
+                </StackPanel>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Background="LightGray">
+                <Button x:Name="grabarButton" Style="{StaticResource Actions}"
+            IsEnabled="False" Content="Grabar" Tag="Imagenes/save.ico"/>
+
+                <Button x:Name="actualizarButton" Style="{StaticResource Actions}" 
+            IsEnabled="False" Content="Actualizar" Tag="Imagenes/insert.ico"/>
+
+                <Button x:Name="eliminarButton" Style="{StaticResource Actions}" 
+            IsEnabled="False" Content="Eliminar" Tag="Imagenes/delete.ico"/>
+
+                <Button x:Name="limpiarButton" Style="{StaticResource Actions}"
+            Content="Limpiar" Tag="Imagenes/clear.ico" ></Button>
+
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="2" Grid.Column="1" Background="LightGray">
+                <Button x:Name="salirButton" Style="{StaticResource Actions}" HorizontalAlignment="Right"
+                    Content="Salir" Tag="Imagenes/exit.ico" Click="SalirButton_Click"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>

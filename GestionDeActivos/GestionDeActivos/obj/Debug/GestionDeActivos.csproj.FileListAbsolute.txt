@@ -27,3 +27,5 @@ C:\Users\jjgui\OneDrive\Escritorio\GestActives\GestionDeActivos\GestionDeActivos
 C:\Users\jjgui\OneDrive\Escritorio\GestActives\GestionDeActivos\GestionDeActivos\obj\Debug\GestionDeActivos.csproj.CopyComplete
 C:\Users\jjgui\OneDrive\Escritorio\GestActives\GestionDeActivos\GestionDeActivos\obj\Debug\GestionDeActivos.exe
 C:\Users\jjgui\OneDrive\Escritorio\GestActives\GestionDeActivos\GestionDeActivos\obj\Debug\GestionDeActivos.pdb
+C:\Users\jjgui\OneDrive\Escritorio\GestActives\GestionDeActivos\GestionDeActivos\obj\Debug\Activos\ActiveView.g.cs
+C:\Users\jjgui\OneDrive\Escritorio\GestActives\GestionDeActivos\GestionDeActivos\obj\Debug\Activos\ActiveView.baml
