@@ -109,8 +109,6 @@ namespace GestionDeActivos.Compañias
         }
 
         public Company SearchByCompanyName(string name)
-        {
-            return Companies.FirstOrDefault(comp => comp.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-        }
+                        => Companies.FirstOrDefault(comp => comp.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
     }
 }

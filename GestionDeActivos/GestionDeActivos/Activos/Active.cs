@@ -32,16 +32,14 @@ namespace GestionDeActivos.Activos
                 throw new ActiveException($"La zona '{zone}' no es válida. Debe ser 'Obrador', 'EntreTúneles', 'Envasado' o 'Anillo_TF'.");
             }
 
-            this.idActive = idActive;
-            this.description = description;
-            this.line = line;
-            this.zone = zone;
-            this.image = image;
+            IdActive = idActive;
+            Description = description;
+            Line = line;
+            Zone = zone;
+            Image = image;
         }
 
-        public Active()
-        {
-        }
+        public Active() { }
 
         public int IdActive
         {
@@ -107,6 +105,7 @@ namespace GestionDeActivos.Activos
                 }
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)

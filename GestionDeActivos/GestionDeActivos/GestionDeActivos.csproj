@@ -96,6 +96,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Cintas\ConveyorBelt.cs" />
+    <Compile Include="Cintas\ConveyorBeltServices.cs" />
     <Compile Include="Compañias\Company.cs" />
     <Compile Include="Compañias\CompanyException.cs" />
     <Compile Include="Compañias\CompanyService.cs" />

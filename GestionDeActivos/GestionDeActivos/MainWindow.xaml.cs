@@ -81,6 +81,18 @@ namespace GestionDeActivos
                     comando.ExecuteNonQuery();
                 }
 
+                using (SQLiteCommand comando = conexion.CreateCommand())
+                {
+                    comando.CommandText = @"
+                    CREATE TABLE IF NOT EXISTS Cintas (
+                        IdConveyorBelt INTEGER PRIMARY KEY AUTOINCREMENT,
+                        DesConveyorBelt TEXT NOT NULL,
+                        Certificate TEXT,
+                        TechnicalSheet TEXT
+                    );";
+                    comando.ExecuteNonQuery();
+                }
+
                 conexion.Close();
             }
         }
