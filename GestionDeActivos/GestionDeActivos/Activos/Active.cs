@@ -39,6 +39,10 @@ namespace GestionDeActivos.Activos
             this.image = image;
         }
 
+        public Active()
+        {
+        }
+
         public int IdActive
         {
             get => idActive;
@@ -55,7 +59,7 @@ namespace GestionDeActivos.Activos
         public string Description
         {
             get => description;
-            private set
+            set
             {
                 if (description != value)
                 {
@@ -68,7 +72,7 @@ namespace GestionDeActivos.Activos
         public string Line
         {
             get => line;
-            private set
+            set
             {
                 if (line != value)
                 {
@@ -81,7 +85,7 @@ namespace GestionDeActivos.Activos
         public string Zone
         {
             get => zone;
-            private set
+            set
             {
                 if (zone != value)
                 {
@@ -94,7 +98,7 @@ namespace GestionDeActivos.Activos
         public string Image
         {
             get => image;
-            private set
+            set
             {
                 if (image != value)
                 {

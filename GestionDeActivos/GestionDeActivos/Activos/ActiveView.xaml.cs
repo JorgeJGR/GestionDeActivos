@@ -30,7 +30,7 @@ namespace GestionDeActivos.Activos
             InitializeComponent();
             Actives = new ObservableCollection<Active>();
             activeService = new ActiveService();
-            compañiasDataGrid.ItemsSource = Actives;
+            activosDataGrid.ItemsSource = Actives;
             lineaComboBox.ItemsSource = Enum.GetValues(typeof(Lines)).Cast<Lines>();
             zonaComboBox.ItemsSource = Enum.GetValues(typeof(Zones)).Cast<Zones>();
             CargarDatos();
@@ -119,10 +119,10 @@ namespace GestionDeActivos.Activos
 
         private void ZonaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lineaComboBox.SelectedItem != null)
+            if (zonaComboBox.SelectedItem != null)
             {
-                Lines selectedLine = (Lines)lineaComboBox.SelectedItem;
-                zonaTextBox.Text = selectedLine.ToString();
+                Zones selectedZone = (Zones)zonaComboBox.SelectedItem;
+                zonaTextBox.Text = selectedZone.ToString();
             }
         }
 
@@ -142,6 +142,7 @@ namespace GestionDeActivos.Activos
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
+
             string descripcion = descripcionTextBox.Text;
             string idActivoText = idActivoTextBox.Text;
             Active activoEncontrado = null;
@@ -150,6 +151,7 @@ namespace GestionDeActivos.Activos
             {
                 activoEncontrado = activeService.SearchByActiveidActive(idActivo);
             }
+
             else if (!string.IsNullOrEmpty(descripcion))
             {
                 activoEncontrado = activeService.SearchByActiveDescription(descripcion);
@@ -178,10 +180,147 @@ namespace GestionDeActivos.Activos
                 {
                     MessageBox.Show($"El archivo de imagen no se encontró en la ruta: {rutaAbsoluta}.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
+                MessageBoxResult result = MessageBox.Show("¿Deseas eliminar o modificar el registro?", "Seleccionar acción",
+                                    MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    buscarButton.IsEnabled = false;
+                    eliminarButton.IsEnabled = true;
+                }
+
+                else if (result == MessageBoxResult.No)
+                {
+                    idActivoTextBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Lavender"));
+                    idActivoTextBox.IsReadOnly = true;
+
+                    descripcionTextBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Lavender"));
+                    descripcionTextBox.IsReadOnly = true;
+
+                    lineaComboBox.IsEnabled = true;
+                    lineaComboBox.SelectedItem = -1;
+
+                    zonaComboBox.IsEnabled = true;
+                    zonaComboBox.SelectedItem = -1;
+
+                    actualizarButton.IsEnabled = true;
+                    abrirArchivoButton.IsEnabled = true;
+                }
+                else
+                {
+                    idActivoTextBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Lavender"));
+                    idActivoTextBox.IsReadOnly = true;
+
+                    descripcionTextBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Lavender"));
+                    descripcionTextBox.IsReadOnly = true;
+                }
             }
             else
             {
-                MessageBox.Show("No se encontró un activo con los criterios especificados.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBoxResult result = MessageBox.Show($"El activo no existe. ¿Deseas crear un nuevo registro?", "Activo no encontrada",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    lineaComboBox.IsEnabled = true;
+                    lineaComboBox.SelectedItem = -1;
+
+                    zonaComboBox.IsEnabled = true;
+                    zonaComboBox.SelectedItem = -1;
+
+                    buscarButton.IsEnabled = false;
+                    grabarButton.IsEnabled = true;
+                    abrirArchivoButton.IsEnabled = true;
+                }
+                else
+                {
+                    LimpiarButton_Click(sender, e);
+                }
+            }
+        }
+
+        private void GrabarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Active activo = new Active()
+                {
+                    IdActive = int.Parse(idActivoTextBox.Text.Trim()),
+                    Description = descripcionTextBox.Text.Trim(),
+                    Zone = zonaTextBox.Text.Trim(),
+                    Line = lineaTextBox.Text.Trim(),
+                    Image = imagenTextBox.Text.Trim()
+                };
+
+                activeService.AddActive(activo);
+
+                MessageBox.Show("Activo guardado exitosamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                CargarDatos();
+                LimpiarButton_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar la persona: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void EliminarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int codigo = int.Parse(idActivoTextBox.Text.Trim());
+
+                Active activoToRemove = Actives.FirstOrDefault(a => a.IdActive == codigo);
+
+                MessageBox.Show(activoToRemove.IdActive.ToString());
+
+                if (activoToRemove != null)
+                {
+                    activeService.RemoveActiveData(activoToRemove);
+                }
+
+
+                LimpiarButton_Click(sender, e);
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ActualizarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                int codigo = int.Parse(idActivoTextBox.Text.Trim());
+                string linea = lineaTextBox.Text;
+                string zona = zonaTextBox.Text;
+                string imagen = imagenTextBox.Text;
+
+                Active activeToUpdate = Actives.FirstOrDefault(a => a.IdActive == codigo);
+
+                if (activeToUpdate != null)
+                {
+                    activeToUpdate.Line = linea;
+                    activeToUpdate.Zone = zona;
+                    activeToUpdate.Image = imagen;
+
+                    activeService.UpdateActiveData(activeToUpdate);
+
+                    LimpiarButton_Click(sender, e);
+                    CargarDatos();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró ningún activo con ese codigo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

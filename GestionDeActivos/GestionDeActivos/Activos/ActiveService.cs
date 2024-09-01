@@ -50,14 +50,14 @@ namespace GestionDeActivos.Activos
                 using (SQLiteConnection conexion = new SQLiteConnection("Data Source=GestActiveDB.db"))
                 {
                     conexion.Open();
-                    string query = "UPDATE Activos SET IdActive = @IdActive, Description = @Description, Line = @Line, Zone = @Zone, Image =@Image";
+                    string query = "UPDATE Activos SET Line = @Line, Zone = @Zone, Image = @Image WHERE IdActive = @IdActive";
                     using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
                     {
-                        comando.Parameters.AddWithValue("@IdActive", a.IdActive);
-                        comando.Parameters.AddWithValue("@Description", a.Description);
+                        // Asignar valores a todos los parámetros utilizados en la consulta
                         comando.Parameters.AddWithValue("@Line", a.Line);
                         comando.Parameters.AddWithValue("@Zone", a.Zone);
                         comando.Parameters.AddWithValue("@Image", a.Image);
+                        comando.Parameters.AddWithValue("@IdActive", a.IdActive); // Aquí es donde faltaba el parámetro
 
                         int filasAfectadas = comando.ExecuteNonQuery();
 
@@ -77,6 +77,7 @@ namespace GestionDeActivos.Activos
             }
         }
 
+
         public void RemoveActiveData(Active a)
         {
             try
@@ -84,15 +85,15 @@ namespace GestionDeActivos.Activos
                 using (SQLiteConnection conexion = new SQLiteConnection("Data Source=GestActiveDB.db"))
                 {
                     conexion.Open();
-                    string query = "DELETE FROM Activos WHERE IdActivo = @IdActivo";
+                    string query = "DELETE FROM Activos WHERE IdActive = @IdActive";
                     using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
                     {
-                        comando.Parameters.AddWithValue("@IdCompany", a.IdActive);
+                        comando.Parameters.AddWithValue("@IdActive", a.IdActive);
                         int filasAfectadas = comando.ExecuteNonQuery();
 
                         if (filasAfectadas == 0)
                         {
-                            MessageBox.Show($"No se pudo actualizar el activo {a.Description}.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show($"No se pudo eliminar el activo {a.Description}.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
                     }

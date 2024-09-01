@@ -56,11 +56,11 @@ namespace GestionDeActivos
                 {
                     comando.CommandText = @"
                     CREATE TABLE IF NOT EXISTS Activos (
-                        idActive INT NOT NULL PRIMARY KEY,
-                        description VARCHAR(255) NOT NULL,
-                        line VARCHAR(50) NOT NULL,
-                        zone VARCHAR(50) NOT NULL,
-                        image VARCHAR(255) NOT NULL
+                        IdActive INT NOT NULL PRIMARY KEY,
+                        Description VARCHAR(255) NOT NULL,
+                        Line VARCHAR(50) NOT NULL,
+                        Zone VARCHAR(50) NOT NULL,
+                        Image VARCHAR(255) NOT NULL
                 );";
                     comando.ExecuteNonQuery();
                 }
